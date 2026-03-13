@@ -10,12 +10,12 @@ import { FaAngleDoubleUp } from "react-icons/fa";
 // If you prefer app metadata, you can export `metadata` from this file (optional)
 
 export default function CyberSecurity() {
-  const [activeQuestion, setActiveQuestion] = useState(null);
-  const faqSectionRef = useRef(null);
+const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
+const faqSectionRef = useRef<HTMLDivElement | null>(null);
 
-  const handleToggle = (index) => {
-    setActiveQuestion(activeQuestion === index ? null : index);
-  };
+const handleToggle = (index: number) => {
+  setActiveQuestion(activeQuestion === index ? null : index);
+};
 
   const scrollToFAQs = () => {
     if (faqSectionRef.current) {

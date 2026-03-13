@@ -29,14 +29,14 @@ import {
 import { MdGroups, MdSupportAgent } from "react-icons/md";
 
 const ManagedServices = () => {
-  const [activeQuestion, setActiveQuestion] = useState(null);
-  const faqSectionRef = useRef(null); // Reference to the FAQ section
-  const [selectedFeature, setSelectedFeature] = useState(null);
+  const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
+  const faqSectionRef = useRef<HTMLDivElement | null>(null);
 
-  const handleToggle = (index) => {
+  const handleToggle = (index: number) => {
     setActiveQuestion(activeQuestion === index ? null : index);
   };
 
+  const [selectedFeature, setSelectedFeature] = useState<number | null>(null);
   const scrollToFAQs = () => {
     if (faqSectionRef.current) {
       faqSectionRef.current.scrollIntoView({
@@ -150,7 +150,7 @@ const ManagedServices = () => {
     },
   ];
 
-  const handleFeatureClick = (index) => {
+  const handleFeatureClick = (index: number) => {
     setSelectedFeature(selectedFeature === index ? null : index);
   };
 
@@ -169,7 +169,7 @@ const ManagedServices = () => {
   };
   return (
     <>
-     <Head>
+      <Head>
         <title>Managed IT Solutions & Services USA - GlobalXperts</title>
 
         <meta
@@ -1056,7 +1056,7 @@ const ManagedServices = () => {
               title: "Virtual Machines",
             },
             {
-              icon:<FaAws  size={30} className="text-blue-800" />,
+              icon: <FaAws size={30} className="text-blue-800" />,
               title: "IaaS Solutions",
             },
           ].map((feature, index) => (
@@ -1105,9 +1105,8 @@ const ManagedServices = () => {
                     {feature.title}
                   </h3>
                   <span
-                    className={`transform transition-all ${
-                      selectedFeature === index ? "rotate-180" : "rotate-0"
-                    }`}
+                    className={`transform transition-all ${selectedFeature === index ? "rotate-180" : "rotate-0"
+                      }`}
                   >
                     &#8595;
                   </span>
@@ -1219,7 +1218,7 @@ const ManagedServices = () => {
             </div>
           ))}
         </div>
-      </div>       
+      </div>
     </>
   );
 };

@@ -6,12 +6,12 @@ import Link from "next/link";
 import { FaMapMarkedAlt, FaCloudUploadAlt } from "react-icons/fa";
 
 const ProfessionalServices = () => {
-  const [activeQuestion, setActiveQuestion] = useState(null);
-  const faqSectionRef = useRef(null);
+const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
+const faqSectionRef = useRef<HTMLDivElement | null>(null);
 
-  const handleToggle = (index) => {
-    setActiveQuestion(activeQuestion === index ? null : index);
-  };
+const handleToggle = (index: number) => {
+  setActiveQuestion(activeQuestion === index ? null : index);
+};
 
   const scrollToFAQs = () => {
     if (faqSectionRef.current) {
@@ -200,7 +200,6 @@ const ProfessionalServices = () => {
             autoPlay
             loop
             playsInline
-            loading="lazy"
             className="rounded-xl shadow-md object-cover h-auto w-full"
           ></video>
         </div>
@@ -500,7 +499,6 @@ const ProfessionalServices = () => {
               autoPlay
               loop
               playsInline
-              loading="lazy"
             ></video>
             <div className="absolute bottom-0 left-0 right-0 p-4 text-white text-center"></div>
           </div>
@@ -547,7 +545,6 @@ const ProfessionalServices = () => {
               className="w-full aspect-video rounded-md shadow-lg"
               src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Services/Professional-Services/ProfessionalServices.webp"
               alt="Professional Services"
-              loading="lazy"
             />
           </div>
         </div>

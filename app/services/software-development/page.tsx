@@ -22,7 +22,7 @@ import {
 // import { WhyChooseSection } from "../Software Development/whyChoose";
 
 const SoftwareDevelopment = () => {
-  const [activeService, setActiveService] = useState(null);
+const [activeService, setActiveService] = useState<number | null>(null);
 
   const IMAGES = {
     docker: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/docker.svg",
@@ -276,7 +276,6 @@ const SoftwareDevelopment = () => {
                   <img
                     src={tech.icon}
                     alt={tech.name}
-                    loading="lazy"
                     className="h-12 w-12 mb-3 group-hover:scale-110 transition-transform"
                   />
                   <p className="text-sm font-semibold text-gray-700 text-center">

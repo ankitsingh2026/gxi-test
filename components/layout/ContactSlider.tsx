@@ -1,13 +1,28 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { MdOutlineSupportAgent } from "react-icons/md";
 
+type FormValues = {
+  name: string;
+  countryCode?: string;
+  phone?: string;
+  email: string;
+  message?: string;
+  isAgreed?: boolean;
+};
+
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
+
 const ContactSlider = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [responseMessage, setResponseMessage] = useState("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [responseMessage, setResponseMessage] = useState<string>("");
 
   const siteKey = "6LfeY00rAAAAAPGTPS3gr0KXyDismzqgpeoNivZU";
 
@@ -16,10 +31,10 @@ const ContactSlider = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormValues>();
 
-  // Optional: Wait for grecaptcha to load
-  const [grecaptchaReady, setGrecaptchaReady] = useState(false);
+  const [grecaptchaReady, setGrecaptchaReady] = useState<boolean>(false);
+
   useEffect(() => {
     const interval = setInterval(() => {
       if (window.grecaptcha && window.grecaptcha.execute) {
@@ -27,13 +42,14 @@ const ContactSlider = () => {
         clearInterval(interval);
       }
     }, 500);
+
     return () => clearInterval(interval);
   }, []);
 
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 
-  const onSubmit = async (data) => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     if (!grecaptchaReady) {
       setResponseMessage("reCAPTCHA is not ready yet, please wait.");
       return;
@@ -43,17 +59,13 @@ const ContactSlider = () => {
     setResponseMessage("");
 
     try {
-      // Get the reCAPTCHA v3 token
       const token = await window.grecaptcha.execute(siteKey, {
         action: "submit",
       });
 
-      // Add token to form data
       const response = await fetch(
         "https://gxi-backend.globalxperts.net.in/api/ContactSlider",
-        // "http://localhost:5003/api/ContactSlider",
         {
-
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...data, captchaToken: token }),
@@ -92,7 +104,6 @@ const ContactSlider = () => {
             ? "translate-x-16 p-8 block md:translate-x-[0px]"
             : "translate-x-full"
         } w-[450px] 2xl:w-[450px]`}
-        // onMouseLeave={handleClose}
       >
         <div className="bg-white p-6 shadow-lg rounded-lg flex flex-col mr-20">
           <div className="flex justify-between items-center mb-4">
@@ -120,7 +131,6 @@ const ContactSlider = () => {
               )}
             </div>
 
-            {/* Continue all fields as you have */}
             <div className="mb-4 flex space-x-2">
               <input
                 type="text"
@@ -161,9 +171,10 @@ const ContactSlider = () => {
                 placeholder="Message"
                 {...register("message")}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-300"
-                rows="1"
+                rows={1}
               />
             </div>
+
             <div className="flex items-start mb-3">
               <label className="ml-2 text-sm text-black">
                 <input
@@ -176,15 +187,13 @@ const ContactSlider = () => {
                   href="/privacy-policy"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-500 underline hover:text-blue-700 "
+                  className="text-blue-500 underline hover:text-blue-700"
                 >
                   Privacy Policy
                 </a>
                 .
               </label>
             </div>
-
-            {/* REMOVE the ReCAPTCHA component! */}
 
             <button
               type="submit"
@@ -193,6 +202,7 @@ const ContactSlider = () => {
             >
               {loading ? "Sending..." : "Submit"}
             </button>
+
             {responseMessage && (
               <p className="text-center mt-2 text-sm text-gray-600">
                 {responseMessage}

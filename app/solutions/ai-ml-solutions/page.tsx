@@ -10,12 +10,12 @@ import { FaChartLine, FaAngleDoubleUp, FaAdjust } from "react-icons/fa";
 
 
 export default function GenAI() {
-  const [activeQuestion, setActiveQuestion] = useState(null);
-  const faqSectionRef = useRef(null); // Reference to the FAQ section
+const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
+const faqSectionRef = useRef<HTMLDivElement | null>(null);
 
-  const handleToggle = (index) => {
-    setActiveQuestion(activeQuestion === index ? null : index);
-  };
+const handleToggle = (index: number) => {
+  setActiveQuestion(activeQuestion === index ? null : index);
+};
 
   const scrollToFAQs = () => {
     if (faqSectionRef.current) {

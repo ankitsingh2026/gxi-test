@@ -9,10 +9,10 @@ import { MdSecurity } from "react-icons/md";
 import { RxCountdownTimer } from "react-icons/rx";
 
 function DataCenterDesign() {
-  const [activeQuestion, setActiveQuestion] = useState(null);
-  const faqSectionRef = useRef(null); // Reference to the FAQ section
+  const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
+  const faqSectionRef = useRef<HTMLDivElement | null>(null);
 
-  const handleToggle = (index) => {
+  const handleToggle = (index: number) => {
     setActiveQuestion(activeQuestion === index ? null : index);
   };
 
@@ -24,8 +24,6 @@ function DataCenterDesign() {
       });
     }
   };
-  const nbsp = (count) => Array(count).fill("\u00A0").join("");
-
   const faqs = [
     {
       question:

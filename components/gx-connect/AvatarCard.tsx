@@ -2,7 +2,15 @@
 
 import Image from "next/image";
 
-function AvatarCard({ name, desc, size = 88, badge, imageUrl }) {
+type AvatarCardProps = {
+  name: string;
+  desc?: string;
+  size?: number;
+  badge?: string;
+  imageUrl: string;
+};
+
+function AvatarCard({ name, desc, size = 88, badge, imageUrl }: AvatarCardProps) {
   return (
     <div className="relative flex flex-col items-center text-center animate-[floaty_4s_ease-in-out_infinite]">
 
