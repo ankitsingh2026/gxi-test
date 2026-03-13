@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
       protocol: "https",
       hostname: "main-website-images1.s3.ap-south-1.amazonaws.com",
     },
+    {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      }
   ],
 }
 };
