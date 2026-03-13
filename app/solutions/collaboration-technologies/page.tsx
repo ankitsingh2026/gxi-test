@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 
-import ServicesSection from "@/components/Gx-connect/ServicesSection";
-import ThreeTierSolution from "@/components/Gx-connect/ThreeTierSolution";
-import GXPartnersShowcase from "@/components/Gx-connect/GXPartnersShowcase";
-import FloatingDownloadSlider from "@/components/Gx-connect/FloatingDownloadSlider";
-import AvatarCard from "@/components/Gx-connect/AvatarCard";
+import ServicesSection from "@/components/gx-connect/ServicesSection";
+import ThreeTierSolution from "@/components/gx-connect/ThreeTierSolution";
+import GXPartnersShowcase from "@/components/gx-connect/GXPartnersShowcase";
+import FloatingDownloadSlider from "@/components/gx-connect/FloatingDownloadSlider";
+import AvatarCard from "@/components/gx-connect/AvatarCard";
 
 type Avatar = {
   name: string;
