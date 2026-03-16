@@ -31,7 +31,7 @@ const MENU_ITEMS: SubMenuItem[] = [
         children: [
           { label: "AWS", href: "/solutions/cloud/aws" },
           { label: "Multi Cloud", href: "/solutions/cloud/multi-cloud" },
-          { label: "Hybrid Cloud", href: "/solutions/cloud/aws-hybrid-cloud" },
+          { label: "Hybrid Cloud", href: "/solutions/cloud/hybrid-cloud" },
           { label: "Cloud Migration", href: "/solutions/cloud/cloud-solution" },
         ],
       },
@@ -50,7 +50,7 @@ const MENU_ITEMS: SubMenuItem[] = [
           },
           {
             label: "Prolific IO Storage Accelerator",
-            href: "/solutions/aws-solutions/piosa",
+            href: "/solutions/aws-solutions/piosa-high-performance-storage",
           },
           {
             label: "MOM",
@@ -137,7 +137,7 @@ const MENU_ITEMS: SubMenuItem[] = [
     href: "#",
     children: [
       { label: "About", href: "/company/about" },
-      { label: "Careers", href: "/careers" },
+      { label: "Careers", href: "/company/careers" },
       { label: "Contact Us", href: "/contact-us" },
     ],
   },

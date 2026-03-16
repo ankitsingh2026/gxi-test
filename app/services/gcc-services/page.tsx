@@ -22,6 +22,8 @@ import {
 } from "react-icons/fa";
 import { GiClick } from "react-icons/gi";
 import GlobalXpertsProvides from "./GlobalXpertsProvides";
+import GCCGrowthDrivers from "./GrowthDrivers";
+import GCCSetupSection from "./GCCSetupSection";
 
 export default function GCCServicesPage() {
   /* Scroll animation (used by multiple sections) */
@@ -374,6 +376,8 @@ export default function GCCServicesPage() {
         }
       `}</style>
 
+      <GCCGrowthDrivers />
+
       <section className="w-full bg-gradient-to-br from-[#010c41] via-[#02145a] to-[#010c41] text-white py-24 px-6 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
@@ -493,6 +497,9 @@ export default function GCCServicesPage() {
       </section>
 
       {/* ================= GCC SETUP MODELS ================= */}
+
+            <GCCSetupSection />
+
       {/* ---------- Inline Animation CSS ---------- */}
       <style jsx>{`
         .fade-left,
@@ -538,59 +545,8 @@ export default function GCCServicesPage() {
       `}</style>
 
       {/* ================= TOP SECTION - SETUP MODELS ================= */}
-      <section className="bg-gradient-to-br from-[#010c41] via-[#02145a] to-[#010c41] py-24 px-6 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16 fade-up">
-            <span className="text-sm font-semibold text-blue-400 bg-blue-500/10 px-4 py-2 rounded-full border border-blue-500/20">
-              Setup Options
-            </span>
-
-            <h2 className="text-4xl md:text-5xl font-bold mt-6">
-              GCC{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                Setup Models
-              </span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {[
-              {
-                title: "Captive GCC",
-                icon: <FaBuilding className="text-2xl" />,
-              },
-              {
-                title: "Build-Operate-Transfer (BOT)",
-                icon: <FaExchangeAlt className="text-2xl" />,
-              },
-              {
-                title: "Hybrid GCC + Partner",
-                icon: <FaUsers className="text-2xl" />,
-              },
-              {
-                title: "Managed Services Extension",
-                icon: <FaCog className="text-2xl" />,
-              },
-            ].map((model, i) => (
-              <div
-                key={i}
-                className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300 fade-up"
-              >
-                <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 text-white shadow-lg group-hover:scale-110 transition-transform mb-4">
-                  {model.icon}
-                </div>
-
-                <h3 className="font-bold text-xl text-white">{model.title}</h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <GlobalXpertsProvides/>
+      <GlobalXpertsProvides />
 
       {/* ================= SETUP FRAMEWORK ================= */}
       <section className="bg-gradient-to-b from-gray-50 to-white py-24 px-6 relative overflow-hidden">

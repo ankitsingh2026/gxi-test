@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
 import {
   FaBook,
@@ -12,6 +13,7 @@ import {
   FaCogs,
   FaPlane,
 } from "react-icons/fa";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 const industries = [
   { name: "Aviation", icon: <FaPlane />, path: "/industries/aviation" },
@@ -34,40 +36,83 @@ const industries = [
 ];
 
 export default function IndustrySolutionsSection() {
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    sliderRef.current?.scrollBy({
+      left: -300,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollRight = () => {
+    sliderRef.current?.scrollBy({
+      left: 300,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="bg-white text-gray-700 py-12">
-      <div className="text-center px-4 mb-10">
-        <h2 className="text-3xl md:text-5xl font-bold mb-6">
+    <section className="bg-gray-100 py-16">
+
+      {/* Heading */}
+      <div className="text-center px-4 mb-14">
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
           Industry-Specific Solutions
         </h2>
-        <p className="text-lg md:text-xl text-gray-600 max-w-5xl mx-auto">
-          Explore tailored technology solutions designed to help businesses
-          thrive across industries.
+
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          Explore tailored solutions designed for various industries, helping
+          businesses thrive with cutting-edge technology.
         </p>
       </div>
 
-      {/* Scrollable Slider */}
-      <div className="relative max-w-6xl mx-auto">
-        <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth px-6 pb-4">
+      {/* Slider Container */}
+      <div className="max-w-7xl mx-auto px-6 relative">
+
+        {/* Left Button */}
+        <button
+          onClick={scrollLeft}
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 z-10 hover:bg-gray-200"
+        >
+          <MdChevronLeft size={22} />
+        </button>
+
+        {/* Right Button */}
+        <button
+          onClick={scrollRight}
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md rounded-full p-2 z-10 hover:bg-gray-200"
+        >
+          <MdChevronRight size={22} />
+        </button>
+
+        {/* Cards */}
+        <div
+          ref={sliderRef}
+          className="flex gap-10 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 scrollbar-hide"
+        >
           {industries.map((industry, index) => (
             <Link
               key={index}
               href={industry.path}
-              className="min-w-[220px] snap-center p-10 rounded-lg shadow-lg flex flex-col items-center justify-center bg-blueCustomColor text-white transition-all duration-500 ease-in-out overflow-hidden group"
+              className="group relative min-w-[260px] snap-center p-12 rounded-xl bg-[#0c2d3a] flex flex-col items-center justify-center text-center transition duration-500 shadow-md hover:shadow-xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-green-900 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+              {/* Hover Gradient */}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#010c41] to-[#0ea5a4] opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
-              <span className="text-5xl mb-3 relative z-10">
+              {/* Icon */}
+              <div className="relative z-10 text-5xl text-gray-200 mb-4 group-hover:scale-110 transition">
                 {industry.icon}
-              </span>
+              </div>
 
-              <p className="text-lg font-semibold text-gray-200 relative z-10 text-center">
+              {/* Title */}
+              <p className="relative z-10 text-lg font-semibold text-gray-200">
                 {industry.name}
               </p>
             </Link>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

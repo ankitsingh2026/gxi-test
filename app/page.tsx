@@ -11,6 +11,8 @@ import SliderSection from "@/components/SliderSection";
 import KnowledgeCenterSection from "@/components/KnowledgeCenterSection";
 import InnovationShowcaseSection from "@/components/InnovationShowcaseSection";
 import IndustrySolutionsSection from "@/components/IndustrySolutionsSection";
+import Partners from "@/components/Partners";
+import WhatWeDoSection from "@/components/WhatWeDoSection";
 // import SliderSection from "@/components/SliderSection";
 // import Slider2 from "@/components/Slider2";
 // import TeamGrid from "@/components/TeamGrid";
@@ -42,96 +44,201 @@ export default function Home() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-<script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "GlobalXperts Inc.",
-      url: "https://www.globalxperts.net",
-    }),
-  }}
-/>
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "GlobalXperts Inc.",
+        url: "https://www.globalxperts.net",
+      }),
+    }}
+  />;
   return (
     <div className="w-full overflow-x-hidden">
       <HeroSection />
-      <ServicesOverview/>
-      <SliderSection/>
+      <ServicesOverview />
+      <SliderSection />
       {/* Technologies Marquee */}
-      <div className="relative overflow-hidden w-full h-20 bg-white mt-14 max-w-7xl mx-auto">
-        <div className="absolute flex whitespace-nowrap animate-slide">
-          <div className="flex items-center gap-10 mt-2">
-            <Image
-              src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/awsi.svg"
-              alt="AWS"
-              width={80}
-              height={48}
-            />
-            <Image
-              src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/google1.png"
-              alt="Google"
-              width={62}
-              height={48}
-            />
-            <Image
-              src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/azure.png"
-              alt="Azure"
-              width={237}
-              height={48}
-            />
+      <div className="relative overflow-hidden w-full h-24 bg-white mt-14 max-w-7xl mx-auto">
+        <div className="absolute flex animate-slide">
+          <div className="flex items-center gap-12 py-4">
+            {/* AWS */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/awsi.svg"
+                alt="AWS"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Google */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/google1.png"
+                alt="Google"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Azure */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/azure.png"
+                alt="Azure"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* AI */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/ai.jpg"
+                alt="AI"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* ARIS */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/aris.webp"
+                alt="Aris"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Cisco */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/cisco.jpg"
+                alt="Cisco"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Docker */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/docker.png"
+                alt="Docker"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Git */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/git.png"
+                alt="Git"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Jenkins */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/jen.png"
+                alt="Jenkins"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Kubernetes */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/kub.png"
+                alt="Kubernetes"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Mongo */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/mongo.png"
+                alt="MongoDB"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* OpenAI */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/openai.png"
+                alt="OpenAI"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* React */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/reactIcon.png"
+                alt="React"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Terraform */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/terraform.png"
+                alt="Terraform"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
+
+            {/* Express */}
+            <div className="w-[110px] h-[50px] flex items-center justify-center">
+              <Image
+                src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/Technologies/expressjsIcon.jpg"
+                alt="Express"
+                width={110}
+                height={50}
+                className="object-contain"
+              />
+            </div>
           </div>
         </div>
       </div>
 
-<KnowledgeCenterSection/>
-<InnovationShowcaseSection/>
-<IndustrySolutionsSection/>
-    
+      <InnovationShowcaseSection />
+      <IndustrySolutionsSection />
+      <Partners />    
+      <WhatWeDoSection/>
+      <KnowledgeCenterSection />
 
-
-      {/* Join Team Section */}
-      <div className="w-full bg-blueCustomColor p-6 md:p-10 py-10 md:py-16">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:justify-between">
-          <div className="text-center md:text-left mb-8 md:mb-0">
-            <h5 className="text-white text-4xl font-semibold mb-4">
-              Join our team of experts
-            </h5>
-            <p className="text-white text-base md:text-lg font-semibold mb-6">
-              If you have a restless curiosity and a drive for ingenuity,
-              join our team and help shape the industry of IT.
-            </p>
-
-            <Link
-              href="/careers"
-              className="bg-white text-black font-bold hover:bg-green-800 hover:text-white rounded-full px-4 py-2 transition"
-            >
-              Explore Open Roles
-            </Link>
-          </div>
-
-          <div className="flex gap-6 mt-10 md:mt-0">
-            <Image
-              src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/AIML.png"
-              alt="AI ML"
-              width={160}
-              height={160}
-              className="rounded-full"
-            />
-            <Image
-              src="https://main-website-images1.s3.ap-south-1.amazonaws.com/Lending-Page-Image/img2.png"
-              alt="Team"
-              width={160}
-              height={160}
-              className="rounded-full"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* <CompaniesLogos />
-      <ContactUs />
-      <GoToTopButton /> */}
+     
     </div>
   );
 }
