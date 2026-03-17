@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import trashBin from "@/public/assets/logos/trash.gif";
-import educationAnimation from "@/public/Assets/animated-Icons/education.gif";
 import MuiCalendarPicker from "../MuiCalendarPicker";
 import { Dayjs } from "dayjs";
 
@@ -54,7 +52,7 @@ export default function StepEducation({
 
       <div className="flex items-center gap-2">
         <Image
-          src={educationAnimation}
+          src="/Assets/animated-Icons/education.gif"
           alt="education"
           width={32}
           height={32}
@@ -83,7 +81,7 @@ export default function StepEducation({
                 onClick={() => remove(idx)}
                 className="hover:scale-105 transition"
               >
-                <Image src={trashBin} alt="delete" width={24} height={24} />
+                <Image src="/assets/logos/trash.gif" alt="delete" width={24} height={24} />
               </button>
             )}
           </div>

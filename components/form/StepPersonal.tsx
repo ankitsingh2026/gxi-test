@@ -133,7 +133,7 @@ const handlePinChange = async (pin: string) => {
       {/* Header */}
 
       <div className="flex items-center gap-2">
-        <Image src={userAnimation} alt="user" width={32} height={32} />
+        <Image src="/Assets/animated-Icons/user.gif" alt="user" width={32} height={32} />
 
         <h3 className="text-xl font-semibold text-gray-900">
           Personal Information

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import CareersPage from "./CareersPage";
-import firstImage from "@/public/Assets/careers/careers-logo.png";
 
 export default function Careers() {
   return (
@@ -50,7 +49,7 @@ export default function Careers() {
             <div className="flex md:w-1/2">
 
               <Image
-                src={firstImage}
+                src="/Assets/careers/careers-logo.png"
                 alt="careers team"
                 className="rounded-tr-lg rounded-br-lg"
                 priority

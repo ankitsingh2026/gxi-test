@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import reviewAni from "@/public/assets/animated-Icons/review.gif";
 
 interface Education {
   degree?: string;
