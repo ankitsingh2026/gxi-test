@@ -70,10 +70,10 @@ export default function AwsSolutionsPage() {
 
         {/* Cloud Solutions Cards */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <Card title="Titan X – Data Transformation" link="/solutions/cloud-solutions/titanX-data-transformation" />
-          <Card title="Customer Connect – Contact Center" link="/solutions/aws-solutions/customer-collaboration" />
-          <Card title="OmniBot – Chatbot" link="/solutions/AWS-solutions/omniBot-genai" />
-          <Card title="Amazon EVS" link="/solutions/cloud-solutions/Amazon-elastic-vmware-service" />
+          <Card title="Titan X – Data Transformation" link="/solutions/cloud-solutions/titan-x-data-transformation" />
+          <Card title="Customer Connect – Contact Center" link="/solutions/aws-solutions/collaboration-technologies" />
+          <Card title="OmniBot – Chatbot" link="/solutions/AWS-solutions/omni-bot-genai" />
+          <Card title="Opsis Streaming" link="/solutions/cloud-solutions/opsis-live-streaming" />
           <Card
             title="Prolific I/O Storage Accelerator"
             link="/solutions/aws-solutions/piosa-high-performance-storage"

@@ -3,12 +3,16 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import GoToTopButton from "@/components/layout/GoToTopButton";
 import ContactSlider from "@/components/layout/ContactSlider";
+
 export const metadata = {
-  title: "GlobalXperts Inc.",
+  title: {
+    default: "GlobalXperts",
+    template: "%s | GlobalXperts",
+  },
   description:
     "Optimize your network with expert consulting — improving communication and collaboration.",
   openGraph: {
-    title: "GlobalXperts Inc.",
+    title: "GlobalXperts",
     description: "Optimize your network with expert consulting.",
     images: [
       {
@@ -17,6 +21,7 @@ export const metadata = {
     ],
   },
 };
+
 export default function RootLayout({
   children,
 }: {

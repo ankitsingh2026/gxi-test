@@ -4,7 +4,6 @@ import { useState } from "react";
 import { FaLocationPin } from "react-icons/fa6";
 import { HiOutlinePhone, HiOutlineMail, HiOutlineUser } from "react-icons/hi";
 import Image from "next/image";
-import userAnimation from "@/public/Assets/animated-Icons/user.gif";
 
 interface PersonalData {
   fullName?: string;
