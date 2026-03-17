@@ -98,7 +98,7 @@ export default function StepReview({
       {/* HEADER */}
 
       <div className="flex items-center gap-2">
-        <Image src={reviewAni} alt="review" width={32} height={32} />
+        <Image src="/assets/animated-Icons/review.gif" alt="review" width={32} height={32} />
         <h3 className="text-xl font-semibold text-gray-900">Review & Submit</h3>
       </div>
 
