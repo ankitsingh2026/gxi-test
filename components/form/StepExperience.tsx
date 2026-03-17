@@ -4,8 +4,6 @@ import Image from "next/image";
 import { HiOutlineUpload } from "react-icons/hi";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 
-import trashBin from "@/public/assets/logos/trash.gif";
-import expereince from "@/public/assets/animated-Icons/exp.gif";
 
 import MuiCalendarPicker from "../MuiCalendarPicker";
 import { Dayjs } from "dayjs";
@@ -78,8 +76,7 @@ export default function StepExperience({
 
       <div>
         <div className="flex items-center gap-2">
-          <Image src={expereince} alt="experience" width={32} height={32} />
-
+          <Image src="/assets/animated-Icons/exp.gif" alt="experience" width={32} height={32} />
           <h3 className="text-xl font-semibold text-gray-900">
             Professional Experience
           </h3>
@@ -109,7 +106,7 @@ export default function StepExperience({
                   onClick={() => remove(idx)}
                   className="absolute top-2 right-4"
                 >
-                  <Image src={trashBin} alt="delete" width={24} height={24} />
+                  <Image src="/assets/logos/trash.gif" alt="delete" width={24} height={24} />
                 </button>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
@@ -296,11 +293,10 @@ export default function StepExperience({
           placeholder="LinkedIn Profile"
           value={availability.linkedin}
           onChange={(e) => onAvailChange("linkedin", e.target.value)}
-          className={`w-full mt-2 border rounded-lg px-3 py-2 text-sm ${
-            availability.linkedin && !isValidLinkedIn(availability.linkedin)
-              ? "border-red-500"
-              : "border-gray-300"
-          }`}
+          className={`w-full mt-2 border rounded-lg px-3 py-2 text-sm ${availability.linkedin && !isValidLinkedIn(availability.linkedin)
+            ? "border-red-500"
+            : "border-gray-300"
+            }`}
         />
 
         {/* GITHUB */}
@@ -310,11 +306,10 @@ export default function StepExperience({
           placeholder="GitHub Profile"
           value={availability.github}
           onChange={(e) => onAvailChange("github", e.target.value)}
-          className={`w-full mt-2 border rounded-lg px-3 py-2 text-sm ${
-            availability.github && !isValidGitHub(availability.github)
-              ? "border-red-500"
-              : "border-gray-300"
-          }`}
+          className={`w-full mt-2 border rounded-lg px-3 py-2 text-sm ${availability.github && !isValidGitHub(availability.github)
+            ? "border-red-500"
+            : "border-gray-300"
+            }`}
         />
       </div>
 
@@ -339,7 +334,7 @@ export default function StepExperience({
             <div className="text-sm">{availability.resumeFileMeta.name}</div>
 
             <button onClick={() => removeFile("resume")}>
-              <Image src={trashBin} alt="delete" width={24} height={24} />
+              <Image src="/assets/logos/trash.gif" alt="delete" width={24} height={24} />
             </button>
           </div>
         )}

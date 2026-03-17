@@ -9,26 +9,20 @@ import {
   FaCloud,
   FaCogs,
   FaArrowAltCircleUp,
+  FaDatabase
 } from "react-icons/fa";
 
+import { MdCloud } from "react-icons/md";
 import { DiModernizr } from "react-icons/di";
 import { GiLevelTwoAdvanced } from "react-icons/gi";
-
-import {
-  SiAmazoncloudwatch,
-  SiAmazons3,
-  SiAmazoneks,
-  SiAwslambda,
-  SiAmazonec2,
-  SiAmazondocumentdb,
-} from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 
 export default function AWSPage() {
 
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
   const faqRef = useRef<HTMLDivElement>(null);
 
-  const toggleFAQ = (index:number) => {
+  const toggleFAQ = (index: number) => {
     setActiveQuestion(activeQuestion === index ? null : index);
   };
 
@@ -38,50 +32,50 @@ export default function AWSPage() {
 
   /* SERVICES */
 
-  const awsServices = [
-    {
-      title: "Amazon EC2",
-      description:
-        "Build scalable virtual machines in the cloud with 99.99% availability.",
-      icon: SiAmazonec2,
-      color: "text-blue-500",
-    },
-    {
-      title: "Amazon S3",
-      description:
-        "Secure object storage that scales infinitely and stores data reliably.",
-      icon: SiAmazons3,
-      color: "text-red-500",
-    },
-    {
-      title: "Amazon EKS",
-      description:
-        "Managed Kubernetes platform for containerized workloads.",
-      icon: SiAmazoneks,
-      color: "text-green-500",
-    },
-    {
-      title: "AWS Lambda",
-      description:
-        "Run serverless functions without managing infrastructure.",
-      icon: SiAwslambda,
-      color: "text-yellow-500",
-    },
-    {
-      title: "AWS Glue",
-      description:
-        "Build scalable ETL pipelines and data lakes with serverless tools.",
-      icon: SiAmazoncloudwatch,
-      color: "text-orange-500",
-    },
-    {
-      title: "Amazon Bedrock",
-      description:
-        "Build generative AI applications using foundation models.",
-      icon: SiAmazondocumentdb,
-      color: "text-purple-500",
-    },
-  ];
+const awsServices = [
+  {
+    title: "Amazon EC2",
+    description:
+      "Build scalable virtual machines in the cloud with high availability.",
+    icon: FaServer,
+    color: "text-blue-500",
+  },
+  {
+    title: "Amazon S3",
+    description:
+      "Secure object storage that scales infinitely and stores data reliably.",
+    icon: FaDatabase,
+    color: "text-red-500",
+  },
+  {
+    title: "Amazon EKS",
+    description:
+      "Managed Kubernetes platform for containerized workloads.",
+    icon: MdCloud,
+    color: "text-green-500",
+  },
+  {
+    title: "AWS Lambda",
+    description:
+      "Run serverless functions without managing infrastructure.",
+    icon: FaAws,
+    color: "text-yellow-500",
+  },
+  {
+    title: "AWS Glue",
+    description:
+      "Build scalable ETL pipelines and data lakes with serverless tools.",
+    icon: FaCogs,
+    color: "text-orange-500",
+  },
+  {
+    title: "Amazon Bedrock",
+    description:
+      "Build generative AI applications using foundation models.",
+    icon: FaCloud,
+    color: "text-purple-500",
+  },
+];
 
   /* SOFTWARE */
 
@@ -250,9 +244,9 @@ export default function AWSPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
 
-            {awsServices.map((service,i)=>{
+            {awsServices.map((service, i) => {
               const Icon = service.icon
-              return(
+              return (
                 <div key={i} className="bg-white p-6 rounded-xl shadow-lg">
                   <Icon className={`text-5xl mb-4 ${service.color}`} />
                   <h3 className="text-xl font-semibold">{service.title}</h3>
@@ -277,13 +271,13 @@ export default function AWSPage() {
 
         <div className="grid md:grid-cols-3 gap-6">
 
-          {software.map((item,i)=>(
+          {software.map((item, i) => (
             <Link
               key={i}
               href={item.link}
               className="border rounded-lg overflow-hidden hover:shadow-lg"
             >
-              <img src={item.img} className="h-48 w-full object-cover"/>
+              <img src={item.img} className="h-48 w-full object-cover" />
               <div className="p-4 text-center font-semibold">
                 {item.title}
               </div>
@@ -304,16 +298,16 @@ export default function AWSPage() {
 
         <div className="grid md:grid-cols-2 gap-8">
 
-          {faqs.map((faq,i)=>(
+          {faqs.map((faq, i) => (
             <div key={i}>
               <h3
                 className="cursor-pointer font-semibold text-blue-600"
-                onClick={()=>toggleFAQ(i)}
+                onClick={() => toggleFAQ(i)}
               >
                 {faq.q}
               </h3>
 
-              {activeQuestion===i && (
+              {activeQuestion === i && (
                 <p className="text-gray-600 mt-2">{faq.a}</p>
               )}
 
@@ -331,9 +325,9 @@ export default function AWSPage() {
 
 /* reusable component */
 
-function Service({icon,title,text}:{icon:any,title:string,text:string}){
+function Service({ icon, title, text }: { icon: any, title: string, text: string }) {
 
-  return(
+  return (
     <div className="flex gap-4">
       <div>{icon}</div>
       <div>
