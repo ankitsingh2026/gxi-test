@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://gxinetworks.in
+
+# Sitemaps
+Sitemap: https://gxinetworks.in/sitemap.xml
