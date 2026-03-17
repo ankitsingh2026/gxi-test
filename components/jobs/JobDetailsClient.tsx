@@ -19,7 +19,7 @@ function formatEmploymentType(type: string | undefined) {
 function cleanHTML(html: string | undefined) {
   if (!html) return "";
   return String(html)
-    .replace(/<\s*style[^>]*>.*?<\s*\/\s*style\s*>/gis, "")
+   .replace(/<\s*style[^>]*>[\s\S]*?<\s*\/\s*style\s*>/gi, "")
     .replace(/background-color:\s*[^;]+;?/gi, "")
     .replace(/color:\s*[^;]+;?/gi, "")
     .replace(/font-size:\s*[^;]+;?/gi, "");

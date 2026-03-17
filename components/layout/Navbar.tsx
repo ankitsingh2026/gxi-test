@@ -256,7 +256,7 @@ export default function Navbar() {
         </div>
 
         {/* Center menu (desktop) */}
-        <ul className="hidden lg:flex absolute left-1/2 -translate-x-1/2 space-x-6 items-center text-white">
+        <ul className="hidden lg:flex absolute left-1/2 -translate-x-1/2 space-x-2 items-center text-white">
           <li>
             <Link
               href="/"
@@ -289,7 +289,7 @@ export default function Navbar() {
               {/* desktop dropdown */}
               {openIndex === index && item.children && (
                 <div
-                  className="absolute top-full mt-[14px] left-0 shadow-xl p-2 rounded-sm min-w-[220px] transition-all duration-300 ease-in-out transform animate-fadeIn"
+                  className="absolute top-full mt-[12px] left-0 shadow-xl p-2 rounded-sm min-w-[220px] transition-all duration-300 ease-in-out transform animate-fadeIn"
                   style={{
                     backgroundImage:
                       "linear-gradient(to right, rgb(8, 12, 50), #172554, #172554)",
@@ -303,7 +303,7 @@ export default function Navbar() {
                         <div className="flex items-center justify-between">
                           <Link
                             href={child.href}
-                            className="block p-2 rounded whitespace-nowrap hover:bg-greenCustomColor2 hover:font-bold hover:text-white transition-all duration-200 w-full"
+                            className="block p-2 rounded whitespace-nowrap hover:bg-greenCustomColor2  hover:text-white transition-all duration-200 w-full"
                           >
                             {child.label}
                           </Link>

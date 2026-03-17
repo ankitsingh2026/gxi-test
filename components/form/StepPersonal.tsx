@@ -6,8 +6,30 @@ import { HiOutlinePhone, HiOutlineMail, HiOutlineUser } from "react-icons/hi";
 import Image from "next/image";
 import userAnimation from "@/public/Assets/animated-Icons/user.gif";
 
-export default function StepPersonal({ data, onChange, toggleLanguage }) {
+interface PersonalData {
+  fullName?: string;
+  email?: string;
+  phone?: string;
+  pincode?: string;
+  country?: string;
+  state?: string;
+  city?: string;
+  address?: string;
+  gender?: string;
+  languages?: string[];
+}
 
+interface StepPersonalProps {
+  data: PersonalData;
+  onChange: (field: keyof PersonalData, value: string | string[]) => void;
+  toggleLanguage: (lang: string) => void;
+}
+
+export default function StepPersonal({
+  data,
+  onChange,
+  toggleLanguage,
+}: StepPersonalProps) {
   const baseLanguages = ["English", "Hindi"];
 
   const [showOtherInput, setShowOtherInput] = useState(false);
@@ -17,7 +39,6 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
   // ---------------- LOCATE ME ----------------
 
   const handleLocateMe = async () => {
-
     if (!navigator.geolocation) {
       alert("Geolocation is not supported by your browser");
       return;
@@ -26,15 +47,12 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
     setLoader(true);
 
     navigator.geolocation.getCurrentPosition(
-
       async (position) => {
-
         try {
-
           const { latitude, longitude } = position.coords;
 
           const res = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`,
           );
 
           const out = await res.json();
@@ -44,82 +62,61 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
           onChange("state", address.state || "");
           onChange(
             "city",
-            address.city || address.town || address.village || ""
+            address.city || address.town || address.village || "",
           );
           onChange("pincode", address.postcode || "");
-
         } catch (error) {
-
           console.error(error);
           alert("Unable to fetch address");
-
         } finally {
-
           setLoader(false);
-
         }
-
       },
 
       () => {
         alert("Location permission denied");
         setLoader(false);
-      }
-
+      },
     );
-
   };
 
   // ---------------- PINCODE AUTO FILL ----------------
 
-  const handlePinChange = async (pin) => {
-
-    onChange("pincode", pin);
+const handlePinChange = async (pin: string) => {
+      onChange("pincode", pin);
 
     if (pin.length !== 6) return;
 
     try {
-
-      const res = await fetch(
-        `https://api.postalpincode.in/pincode/${pin}`
-      );
+      const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
 
       const out = await res.json();
 
       if (out[0]?.Status === "Success") {
-
         const info = out[0].PostOffice[0];
 
         onChange("country", "India");
         onChange("city", info.District);
         onChange("state", info.State);
-
       }
-
     } catch (error) {
-
       console.log("PIN fetch failed");
-
     }
-
   };
 
   // ---------------- PHONE ----------------
 
-  const handlePhoneChange = (value) => {
-
+  const handlePhoneChange = (value: string) => {
     let val = value.replace(/\D/g, "");
 
     if (val.length > 12) val = val.slice(0, 12);
 
     onChange("phone", val);
-
   };
 
   // ---------------- ADD OTHER LANGUAGE ----------------
 
   const addLanguage = () => {
-
     const newLang = otherLangInput.trim();
 
     if (!newLang) return;
@@ -129,41 +126,29 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
     }
 
     setOtherLangInput("");
-
   };
 
   return (
     <div className="space-y-6">
-
       {/* Header */}
 
       <div className="flex items-center gap-2">
-
-        <Image
-          src={userAnimation}
-          alt="user"
-          width={32}
-          height={32}
-        />
+        <Image src={userAnimation} alt="user" width={32} height={32} />
 
         <h3 className="text-xl font-semibold text-gray-900">
           Personal Information
         </h3>
-
       </div>
 
       <div className="space-y-4 shadow p-5 rounded-2xl border">
-
         {/* FULL NAME */}
 
         <div>
-
           <label className="text-sm font-medium text-gray-600">
             Full Name *
           </label>
 
           <div className="flex items-center border rounded-lg px-3 py-2 mt-1">
-
             <HiOutlineUser className="text-gray-500 mr-2" />
 
             <input
@@ -173,23 +158,16 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
               placeholder="Enter full name"
               className="w-full text-sm outline-none"
             />
-
           </div>
-
         </div>
 
         {/* EMAIL + PHONE */}
 
         <div className="grid sm:grid-cols-2 gap-4">
-
           <div>
-
-            <label className="text-sm font-medium text-gray-600">
-              Email *
-            </label>
+            <label className="text-sm font-medium text-gray-600">Email *</label>
 
             <div className="flex items-center border rounded-lg px-3 py-2 mt-1">
-
               <HiOutlineMail className="text-gray-500 mr-2" />
 
               <input
@@ -199,19 +177,15 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
                 placeholder="you@example.com"
                 className="w-full text-sm outline-none"
               />
-
             </div>
-
           </div>
 
           <div>
-
             <label className="text-sm font-medium text-gray-600">
               Phone Number *
             </label>
 
             <div className="flex items-center border rounded-lg px-3 py-2 mt-1">
-
               <HiOutlinePhone className="text-gray-500 mr-2" />
 
               <input
@@ -221,21 +195,16 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
                 placeholder="+91XXXXXXXXXX"
                 className="w-full text-sm outline-none"
               />
-
             </div>
-
           </div>
-
         </div>
 
         {/* LOCATION */}
 
         <div className="grid sm:grid-cols-4 gap-3">
-
           {/* PIN */}
 
           <div>
-
             <label className="text-sm font-medium text-gray-600">
               PIN Code *
             </label>
@@ -252,13 +221,10 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
               onClick={handleLocateMe}
               className="flex gap-1 mt-2 text-sm bg-emerald-600 text-white px-3 py-1 rounded-lg"
             >
-
               <FaLocationPin className="mt-[3px]" />
 
               {loader ? "Locating..." : "Locate Me"}
-
             </button>
-
           </div>
 
           {/* COUNTRY */}
@@ -290,7 +256,6 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
             placeholder="City"
             className="mt-6 border rounded-lg px-3 py-2 text-sm"
           />
-
         </div>
 
         {/* ADDRESS */}
@@ -306,15 +271,10 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
         {/* GENDER */}
 
         <div>
-
-          <label className="text-sm font-medium text-gray-600">
-            Gender *
-          </label>
+          <label className="text-sm font-medium text-gray-600">Gender *</label>
 
           <div className="flex gap-3 mt-2">
-
             {["Male", "Female", "Other"].map((g) => {
-
               const selected = data.gender === g;
 
               return (
@@ -322,33 +282,22 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
                   key={g}
                   onClick={() => onChange("gender", g)}
                   className={`px-4 py-1 rounded-full border text-sm
-                    ${selected
-                      ? "bg-emerald-600 text-white"
-                      : "bg-white"
-                    }`}
+                    ${selected ? "bg-emerald-600 text-white" : "bg-white"}`}
                 >
                   {g}
                 </button>
               );
-
             })}
-
           </div>
-
         </div>
 
         {/* LANGUAGES */}
 
         <div>
-
-          <label className="text-sm font-medium text-gray-600">
-            Languages
-          </label>
+          <label className="text-sm font-medium text-gray-600">Languages</label>
 
           <div className="flex gap-2 flex-wrap mt-2">
-
             {baseLanguages.map((lang) => {
-
               const checked = data.languages?.includes(lang);
 
               return (
@@ -356,15 +305,11 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
                   key={lang}
                   onClick={() => toggleLanguage(lang)}
                   className={`px-3 py-1 rounded-full border text-sm
-                    ${checked
-                      ? "bg-emerald-600 text-white"
-                      : "bg-white"
-                    }`}
+                    ${checked ? "bg-emerald-600 text-white" : "bg-white"}`}
                 >
                   {lang}
                 </button>
               );
-
             })}
 
             {/* OTHER */}
@@ -377,7 +322,6 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
             </button>
 
             {showOtherInput && (
-
               <input
                 type="text"
                 value={otherLangInput}
@@ -391,16 +335,10 @@ export default function StepPersonal({ data, onChange, toggleLanguage }) {
                 }}
                 className="border px-2 py-1 rounded text-sm"
               />
-
             )}
-
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
-
 }

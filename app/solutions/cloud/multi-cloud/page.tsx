@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, ReactNode } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { FaAws } from "react-icons/fa";
@@ -185,8 +185,12 @@ function MultiCloud() {
 }
 
 export default MultiCloud;
-
-function CloudCard({ icon, title, text }) {
+type CloudCardProps = {
+  icon: ReactNode;
+  title: string;
+  text: string;
+};
+function CloudCard({ icon, title, text }:CloudCardProps) {
   return (
     <div className="bg-white shadow-2xl p-8 hover:shadow-xl transition-shadow duration-300">
       <div className="flex flex-col items-center">

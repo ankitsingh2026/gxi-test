@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import dayjs from "dayjs";
+import { useState, MouseEvent } from "react";
+import dayjs, { Dayjs } from "dayjs";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -9,40 +9,44 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
 import { Popover } from "@mui/material";
 
+type MuiCalendarPickerProps = {
+  value?: Dayjs | null;
+  onChange: (value: Dayjs | null) => void;
+  minDate?: Dayjs | null;
+  maxDate?: Dayjs | null;
+};
+
 export default function MuiCalendarPicker({
   value,
   onChange,
   minDate,
   maxDate,
-}) {
-
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [view, setView] = useState("year");
-  const [tempDate, setTempDate] = useState(value ? dayjs(value) : null);
+}: MuiCalendarPickerProps) {
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [view, setView] = useState<"year" | "month" | "day">("year");
+  const [tempDate, setTempDate] = useState<Dayjs | null>(
+    value ? dayjs(value) : null
+  );
 
   const open = Boolean(anchorEl);
 
-  // Format display date
   const formattedDate = value
     ? dayjs(value).format("DD MMM YYYY")
     : "Select Date";
 
   // ---------------- OPEN CALENDAR ----------------
 
-  const handleOpen = (event) => {
-
+  const handleOpen = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
     setView("year");
 
-    const baseDate =
-      value
-        ? dayjs(value)
-        : minDate
-        ? dayjs(minDate)
-        : dayjs();
+    const baseDate = value
+      ? dayjs(value)
+      : minDate
+      ? dayjs(minDate)
+      : dayjs();
 
     setTempDate(baseDate);
-
   };
 
   // ---------------- CLOSE ----------------
@@ -53,34 +57,24 @@ export default function MuiCalendarPicker({
 
   // ---------------- DATE SELECT ----------------
 
-  const handleDateChange = (newValue) => {
-
+  const handleDateChange = (newValue: Dayjs | null) => {
     if (!newValue) return;
 
     setTempDate(newValue);
 
     if (view === "year") {
-
       setView("month");
-
     } else if (view === "month") {
-
       setView("day");
-
     } else {
-
-      onChange(newValue.format("YYYY-MM-DD"));
+      onChange(newValue);
       handleClose();
-
     }
-
   };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-
       <div className="relative w-full">
-
         {/* INPUT BUTTON */}
 
         <button
@@ -102,21 +96,17 @@ export default function MuiCalendarPicker({
             horizontal: "left",
           }}
         >
-
           <DateCalendar
             value={tempDate}
             view={view}
             views={["year", "month", "day"]}
-            onViewChange={setView}
+            onViewChange={(v) => setView(v)}
             onChange={handleDateChange}
             minDate={minDate ? dayjs(minDate) : undefined}
             maxDate={maxDate ? dayjs(maxDate) : undefined}
           />
-
         </Popover>
-
       </div>
-
     </LocalizationProvider>
   );
 }

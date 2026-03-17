@@ -15,6 +15,16 @@ const SUBMIT_URL =
 const DRAFT_KEY = (jobId?: any) =>
   `jobApplicationDraft::${jobId ?? "unknownJob"}`;
 
+import { Dayjs } from "dayjs";
+
+type EducationEntry = {
+  degree?: string;
+  university?: string;
+  start_date?: Dayjs | null;
+  end_date?: Dayjs | null;
+  percentage?: number | string;
+  is_current?: boolean;
+};
 export default function ApplicationForm({ job }: { job: any }) {
   const jobKey = useMemo(() => DRAFT_KEY(job?.job_id || job?.id), [job]);
   const initial = useMemo(() => loadDraft(jobKey), [jobKey]);
@@ -203,10 +213,10 @@ export default function ApplicationForm({ job }: { job: any }) {
     setStep((s) => Math.max(0, s - 1));
   }
 
-  function handleFilePick(
-    e: React.ChangeEvent<HTMLInputElement>,
-    which: "resume" | "portfolio",
-  ) {
+function handleFilePick(
+  e: React.ChangeEvent<HTMLInputElement>,
+  which: string
+) {
     const f = e.target.files?.[0];
     if (!f) return;
     const meta = {
@@ -274,7 +284,7 @@ export default function ApplicationForm({ job }: { job: any }) {
             : null,
         submitted_at: new Date().toISOString(),
       },
-      education_history: form.education.map((e) => ({
+      education_history: form.education.map((e: EducationEntry) => ({
         degree: e.degree,
         university: e.university,
         ...(e.start_date ? { start_date: e.start_date } : {}),

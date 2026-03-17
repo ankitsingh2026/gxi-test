@@ -8,13 +8,14 @@ import trashBin from "@/public/assets/logos/trash.gif";
 import expereince from "@/public/assets/animated-Icons/exp.gif";
 
 import MuiCalendarPicker from "../MuiCalendarPicker";
+import { Dayjs } from "dayjs";
 
 interface ExperienceEntry {
   role?: string;
   company?: string;
   address?: string;
-  start_date?: string | null;
-  end_date?: string | null;
+  start_date?: Dayjs | null;
+  end_date?: Dayjs | null;
   is_current?: boolean;
   technologies?: string[];
   technologies_raw?: string;
@@ -32,13 +33,22 @@ interface Availability {
 
 interface Props {
   entries: ExperienceEntry[];
-  onChange: (idx: number, field: string, value: any) => void;
+  onChange: (
+    idx: number,
+    field: keyof ExperienceEntry,
+    value: string | boolean | Dayjs | null | string[],
+  ) => void;
+
   add: () => void;
   remove: (idx: number) => void;
   availability: Availability;
   onAvailChange: (field: string, value: any) => void;
-  onFilePick: (e: React.ChangeEvent<HTMLInputElement>, type: string) => void;
-  removeFile: (type: string) => void;
+  onFilePick: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    type: "resume" | "portfolio",
+  ) => void;
+
+  removeFile: (type: "resume" | "portfolio") => void;
 }
 
 export default function StepExperience({
@@ -157,7 +167,11 @@ export default function StepExperience({
 
                     <MuiCalendarPicker
                       value={exp.start_date || null}
-                      onChange={(v) => onChange(idx, "start_date", v)}
+                      onChange={(v: Dayjs | null) =>
+                        onChange(idx, "start_date", v)
+                      }
+                      minDate={null}
+                      maxDate={null}
                     />
                   </div>
 
@@ -184,8 +198,11 @@ export default function StepExperience({
                     {!exp.is_current && (
                       <MuiCalendarPicker
                         value={exp.end_date || null}
-                        onChange={(v) => onChange(idx, "end_date", v)}
+                        onChange={(v: Dayjs | null) =>
+                          onChange(idx, "end_date", v)
+                        }
                         minDate={exp.start_date || null}
+                        maxDate={null}
                       />
                     )}
 
